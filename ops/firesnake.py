@@ -84,15 +84,15 @@ class Snake():
         return aligned
         
     @staticmethod
-    def _segment_nuclei(data, threshold, area_min, area_max):
+    def _segment_nuclei(data, threshold, area_min, area_max, dapi_channel=0):
         """Find nuclei from DAPI. Find cell foreground from aligned but unfiltered 
         data. Expects data to have shape (CHANNEL, I, J).
         """
 
         if isinstance(data, list):
-            dapi = data[0]
+            dapi = data[dapi_channel]
         elif data.ndim == 3:
-            dapi = data[0]
+            dapi = data[dapi_channel]
         else:
             dapi = data
 
